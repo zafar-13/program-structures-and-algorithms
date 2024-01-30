@@ -1,0 +1,18 @@
+def pairs(s):
+    stack = []
+    mapping = {')': '(', ']': '[', '}': '{'}
+
+    for char in s:
+        if char in mapping.values():
+            stack.append(char)
+        elif char in mapping.keys():
+            if not stack or mapping[char] != stack.pop():
+                return False
+
+    return not stack
+
+string1 = "I { love [ the {rains}()]}"
+string2 = "I { love [ the {rains ] ()"
+
+print(pairs(string1))
+print(pairs(string2))
